@@ -1,0 +1,2 @@
+# tradutorwiki.io
+Tradutor Wiki
