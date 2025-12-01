@@ -1,21 +1,12 @@
-document.getElementById("traduzir").addEventListener("click", async () => {
-  const input = document.getElementById("input").value;
+const WORKER_URL = "https://orange-leaf-a926.jeisongomes.workers.dev";
 
-  const resultBox = document.getElementById("output");
-  resultBox.value = "Traduzindo...";
+async function traduzir(texto) {
+  const response = await fetch(WORKER_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ prompt: texto }),
+  });
 
-  try {
-    const response = await fetch("https://orange-leaf-a926.jeisongomes.workers.dev/", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ text: input }),
-    });
-
-    const data = await response.json();
-
-    resultBox.value = data.result || "Erro ao interpretar resposta.";
-  } catch (error) {
-    resultBox.value = "Erro ao conectar ao servidor proxy.";
-    console.error(error);
-  }
-});
+  const data = await response.json();
+  return data.output;
+}
