@@ -36,7 +36,7 @@ Responda SOMENTE com o wikitext traduzido, sem comentários.
 
     try {
         const resposta = await fetch(
-            "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=AIzaSyA5OZpuLo5HkeMsgjRLtq93A8RoymQe9EY",
+            "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=AIzaSyCOgiYE7yvR3OHSGGhe7pWYGxHtXFCcRQk",
             {
                 method: "POST",
                 headers: {
