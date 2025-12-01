@@ -2,17 +2,17 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Tradutor MediaWiki - Jeison</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Tradutor MediaWiki com Gemini 2.5</title>
 </head>
 <body>
-    <h1>Tradutor Wiki do Jeison</h1>
+    <h2>Traduzir Wikitext</h2>
 
-    <textarea id="input" placeholder="Cole aqui o wikitext em inglês..."></textarea>
+    <textarea id="inputText" rows="10" cols="80" placeholder="Cole aqui o wikitext em inglês..."></textarea><br><br>
 
-    <button id="traduzir">Traduzir mantendo estrutura</button>
+    <button onclick="traduzir()">Traduzir</button>
 
-    <textarea id="output" placeholder="A tradução aparecerá aqui..."></textarea>
+    <h3>Resultado:</h3>
+    <textarea id="outputText" rows="10" cols="80"></textarea>
 
     <script src="script.js"></script>
 </body>
