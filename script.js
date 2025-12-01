@@ -17,7 +17,7 @@ document.getElementById("translateBtn").addEventListener("click", async () => {
       },
       body: JSON.stringify({
         prompt:
-          `Traduza o texto seguinte de inglês para português **sem alterar nenhuma marcação wikitext**.\n\nTexto:\n${input}`
+          `Você é um tradutor especializado em MediaWiki. Sua tarefa é traduzir APENAS o conteúdo textual do wikitext abaixo para português do Brasil, utilizando uma tradução oficial e terminologia padrão. NUNCA altere a estrutura, a ordem das seções ou a disposição do conteúdo. Mantenha TODAS as marcações wiki, templates, infoboxes, tags <ref>, <includeonly>, <noinclude> e códigos HTML wiki. Não traduza o NOME da chamada de templates/modelos ({{Nome do Template}}), apenas o conteúdo interno. Títulos de Seção (==Título==, ===Subtítulo===) e links ([[texto]]) devem ser traduzidos para a versão oficial.\n\nTexto:\n${input}`
       }),
     });
 
