@@ -1,19 +1,31 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>Tradutor MediaWiki com Gemini 2.5</title>
+  <meta charset="utf-8" />
+  <title>Tradutor Wiki - Jeison</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <h2>Traduzir Wikitext</h2>
+  <div class="container">
+    <h1>Tradutor Wiki do Jeison</h1>
 
-    <textarea id="inputText" rows="10" cols="80" placeholder="Cole aqui o wikitext em inglês..."></textarea><br><br>
+    <label for="input">Wikitext em inglês (cole aqui)</label>
+    <textarea id="input" placeholder="Cole aqui o wikitext em inglês..."></textarea>
 
-    <button onclick="traduzir()">Traduzir</button>
+    <button id="traduzir">Traduzir mantendo estrutura</button>
 
-    <h3>Resultado:</h3>
-    <textarea id="outputText" rows="10" cols="80"></textarea>
+    <label for="output">Wikitext traduzido</label>
+    <textarea id="output" placeholder="A tradução aparecerá aqui..." readonly></textarea>
 
-    <script src="script.js"></script>
+    <details>
+      <summary>Logs / Resposta bruta (útil pra debug)</summary>
+      <pre id="log" class="log"></pre>
+    </details>
+
+    <p class="small">Substitua <code>YOUR_GEMINI_API_KEY</code> pelo token que tu gerar no Google AI Studio / Google Cloud.</p>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
