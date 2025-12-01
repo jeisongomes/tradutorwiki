@@ -11,19 +11,12 @@
     <h1>Tradutor Wiki do Jeison</h1>
 
     <label for="input">Wikitext em inglês (cole aqui)</label>
-    <textarea id="input" placeholder="Cole aqui o wikitext em inglês..."></textarea>
+    <textarea id="inputText" placeholder="Cole aqui o texto wiki em inglês..."></textarea>
 
-    <button id="traduzir">Traduzir mantendo estrutura</button>
+    <button id="translateBtn">Traduzir</button>
 
     <label for="output">Wikitext traduzido</label>
-    <textarea id="output" placeholder="A tradução aparecerá aqui..." readonly></textarea>
-
-    <details>
-      <summary>Logs / Resposta bruta (útil pra debug)</summary>
-      <pre id="log" class="log"></pre>
-    </details>
-
-    <p class="small">Substitua <code>YOUR_GEMINI_API_KEY</code> pelo token que tu gerar no Google AI Studio / Google Cloud.</p>
+    <textarea id="outputText" placeholder="Resultado aparecerá aqui..."></textarea>
   </div>
 
   <script src="script.js"></script>
