@@ -1,69 +1,44 @@
-const btn = document.getElementById("traduzir");
-const input = document.getElementById("input");
-const output = document.getElementById("output");
+async function traduzirWikiTexto(inputText) {
+  const apiKey = "AIzaSyCOgiYE7yvR3OHSGGhe7pWYGxHtXFCcRQk";
 
-btn.onclick = async () => {
-    const texto = input.value.trim();
-    if (!texto) {
-        output.value = "Cole um texto primeiro!";
-        return;
-    }
-
-    output.value = "Traduzindo... aguarde...";
-
-    const prompt = `
-Você é um tradutor especializado em MediaWiki.
-Sua tarefa é traduzir APENAS o conteúdo textual do wikitext abaixo para português do Brasil,
-PRESERVANDO 100% da estrutura, marcação, templates, infobox, referências, links, categorias,
-seções e formatação. Use traduções oficiais para palavras importantes, lugares e nomes.
-
-NUNCA altere nomes de templates, parâmetros, chaves, pipes, citações, símbolos ou sintaxe da linguagem wiki.
-NUNCA traduza nada dentro de:
-- {{templates}}
-- [[Category:...]]
-- [[File:...]]
-- <ref>...</ref>
-
-Traduza SOMENTE o texto visível ao leitor.
-
-Texto original:
-"""
-${texto}
-"""
-
-Responda SOMENTE com o wikitext traduzido, sem comentários.
-`;
-
-    try {
-        const resposta = await fetch(
-            "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=AIzaSyCOgiYE7yvR3OHSGGhe7pWYGxHtXFCcRQk",
+  const response = await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=" + apiKey, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      contents: [
+        {
+          role: "user",
+          parts: [
             {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    contents: [
-                        {
-                            parts: [
-                                { text: prompt }
-                            ]
-                        }
-                    ]
-                })
+              text: `
+Traduza o texto abaixo **do inglês para o português BR**, mantendo:
+- TODA a estrutura wiki
+- TODO o markup
+- Templates iguais
+- Infobox igual
+- Nada reescrito
+- Apenas traduza o conteúdo textual usando traduções oficiais
+
+Texto a traduzir:
+${inputText}
+`
             }
-        );
+          ]
+        }
+      ]
+    })
+  });
 
-        const data = await resposta.json();
+  const data = await response.json();
 
-        // A resposta do Gemini vem em:
-        // data.candidates[0].content.parts[0].text
-        const respostaTexto =
-            data?.candidates?.[0]?.content?.parts?.[0]?.text ||
-            "Erro: resposta da API não veio como esperado.";
+  console.log("DEBUG raw:", data);
 
-        output.value = respostaTexto;
-    } catch (err) {
-        output.value = "Erro: " + err.message;
-    }
-};
+  if (!data.candidates || !data.candidates[0].content || !data.candidates[0].content.parts) {
+    throw new Error("Erro: resposta da API não veio no formato esperado.");
+  }
+
+  const texto = data.candidates[0].content.parts[0].text;
+  return texto;
+}
