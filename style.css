@@ -87,3 +87,16 @@ button:hover{ background:var(--accent-dark); }
   font-size:13px;
   margin-top:10px;
 }
+
+#clearBtn {
+    background: #555;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+#clearBtn:hover {
+    background: #333;
+}
