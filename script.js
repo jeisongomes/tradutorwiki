@@ -1,3 +1,34 @@
+// === Funções da barra de progresso ===
+function startProgress() {
+  const bar = document.getElementById("progressBar");
+  bar.style.width = "0%";
+
+  // animação contínua até a resposta chegar
+  let width = 0;
+  bar._interval = setInterval(() => {
+    width += 2;
+    if (width >= 90) width = 90; // nunca completar antes
+    bar.style.width = width + "%";
+  }, 120);
+}
+
+function finishProgress() {
+  const bar = document.getElementById("progressBar");
+  clearInterval(bar._interval);
+  bar.style.width = "100%";
+
+  setTimeout(() => {
+    bar.style.width = "0%";
+  }, 600);
+}
+
+function resetProgress() {
+  const bar = document.getElementById("progressBar");
+  clearInterval(bar._interval);
+  bar.style.width = "0%";
+}
+
+// === BOTÃO DE TRADUZIR ===
 document.getElementById("translateBtn").addEventListener("click", async () => {
   const input = document.getElementById("inputText").value.trim();
   const output = document.getElementById("outputText");
