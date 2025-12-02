@@ -34,3 +34,9 @@ document.getElementById("translateBtn").addEventListener("click", async () => {
     output.value = "Erro ao conectar ao Worker: " + err.message;
   }
 });
+
+// NOVO: BOTÃO DE LIMPAR
+document.getElementById("clearBtn").addEventListener("click", () => {
+  document.getElementById("inputText").value = "";
+  document.getElementById("outputText").value = "";
+});
