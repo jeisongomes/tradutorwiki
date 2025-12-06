@@ -4,7 +4,7 @@ const outputEl = document.getElementById("outputText");
 const translateBtn = document.getElementById("translateBtn");
 const clearBtn = document.getElementById("clearBtn"); // novo botão
 const progressBar = document.getElementById("progressBar"); // barra
-const charCount = document.getElementById("charCount"); // contador
+const charCounter = document.getElementById("charCounter"); // contador
 
 // ===== CONFIGURAÇÃO DO LIMITE =====
 const MAX_CHARS = 20000; // << ajuste aqui o limite desejado
@@ -18,17 +18,15 @@ inputBox.addEventListener("input", () => {
     inputBox.value = inputBox.value.slice(0, MAX_CHARS);
   }
   counter.textContent = `${inputBox.value.length}/${MAX_CHARS}`;
-});
 
-  // cor indicando limite atingido
-  counter.style.color = 
-    inputBox.value.length >= MAX_CHARS ? "red" : "#333";
-});
-
-// --- CONTADOR DE CARACTERES ---
-inputEl.addEventListener("input", () => {
-  charCount.textContent = `Caracteres: ${inputEl.value.length}`;
-});
+    // cor indicando limite atingido
+if (inputBox.value.length >= MAX_CHARS) {
+  counter.style.color = "red";
+} else {
+  counter.style.color = "#333";
+}
+  
+}); 
 
 // --- BOTÃO LIMPAR ---
 clearBtn.addEventListener("click", () => {
