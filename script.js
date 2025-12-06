@@ -20,6 +20,11 @@ inputBox.addEventListener("input", () => {
   counter.textContent = `${inputBox.value.length}/${MAX_CHARS}`;
 });
 
+  // cor indicando limite atingido
+  counter.style.color = 
+    inputBox.value.length >= MAX_CHARS ? "red" : "#333";
+});
+
 // --- CONTADOR DE CARACTERES ---
 inputEl.addEventListener("input", () => {
   charCount.textContent = `Caracteres: ${inputEl.value.length}`;
